@@ -1,0 +1,26 @@
+﻿@model DATA.ApplicationUser
+@using Microsoft.AspNet.Identity.EntityFramework
+@{
+    ViewBag.Title = "RolAta";
+}
+
+<h2>Roller</h2>
+<h3>Kullanıcı Adı: @Model.UserName</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("userId", Model.Id)
+
+    foreach (var item in ViewBag.Roles as IEnumerable<IdentityRole>)
+    {
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="roles" value="@item.Name" checked="@Model.Roles.Any(x => x.RoleId.Equals(item.Id))" />
+                @item.Name
+            </label>
+        </div>
+    }
+
+    <input type="submit" value="KAYDET" class="btn btn-info" />
+}
+

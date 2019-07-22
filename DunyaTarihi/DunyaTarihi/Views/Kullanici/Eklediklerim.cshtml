@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Eklediklerim";
+}
+
+<h2>Eklediklerim</h2>
+
+<div id="olaylar"></div>
+
+
+@section Scripts
+{
+    <script>
+
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetFromEklediklerim",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID +"'>" + value.Baslik + "</a>")
+                    $("#olaylar").append("Durumu: "+ value.Durum +"</p>")
+                })
+
+            }
+        });
+
+
+
+
+    </script>
+}
+

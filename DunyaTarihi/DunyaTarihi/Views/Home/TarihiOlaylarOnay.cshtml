@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "TarihiOlaylarOnay";
+}
+
+
+
+
+<h2>Tüm Tarihi Olaylar</h2>
+
+<div id="olaylar"></div>
+
+
+
+
+@section Scripts
+{
+    <script>
+
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetOlaylar",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    $("#olaylar").append("<p><a href='/Home/TarihiOlayGuncelle/" + value.ID + "'>" + value.Baslik + "</a></p>");
+                })
+
+            }
+        });
+
+    </script>
+}

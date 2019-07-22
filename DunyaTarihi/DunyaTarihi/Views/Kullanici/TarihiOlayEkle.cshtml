@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "TarihiOlayEkle";
+}
+
+
+
+
+    <div class="container-fluid">
+        <div class="row containerRow">
+            <div class="col-md-3" id="menuPanel">
+                <h1>Günlüğüm</h1>
+                <a href="#" id="btnYeni" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-plus"></span> Yeni Not
+                </a>
+
+                <div class="menu">
+                    <ul id="notlarMenu" class="nav nav-pills nav-stacked"></ul>
+                </div>
+            </div>
+
+            <div class="col-md-9 icerikSutun">
+                <div id="icerikPanel">
+                    <div class="baslikContainer">
+                        <div class="txtBaslikContainer">
+                            <input type="text" id="txtBaslik" class="form-control" placeholder="Başlık Giriniz..." />
+                        </div>
+                    </div>
+
+                    <div class="icerikContainer">
+                        <div class="txtIcerikContainer">
+                            <textarea id="txtIcerik" class="form-control" placeholder="Notlarınızı Buraya Girebilirsiniz..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="buttonContainer">
+                        <div class="statusDiv text-success">
+                            <span id="statusMessage"></span>
+                        </div>
+                        <button class="btn btn-danger" id="btnSil">Sil</button>
+                        <button class="btn btn-success" id="btnKaydet">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+@section scripts
+{
+<script>
+    var loggedInEmail;
+    var headers = {};
+    var currentID = null;
+
+    if (!sessionStorage.tokenKey) {
+        window.location.href = "/Account/Login";
+    }
+    else
+        loadContent();
+
+    function loadContent() {
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetFromKitaplik",
+            headers: headers,
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    menuLinkEkle(value.ID, value.Baslik);
+                });
+            }
+        });
+    }
+
+    function menuLinkEkle(id, baslik) {
+        $("#notlarMenu").append('<li><a href="#" class="menuLink" data-not-id="' + id + '">' + baslik + '</a></li>');
+    }
+
+    $("#btnKaydet").click(function () {
+        if ($.trim($("#txtBaslik").val()) == "") {
+            alert("Lütfen başlık giriniz!");
+        }
+        else {
+            $.ajax({
+                method: "post",
+                url: "/api/Main/PostToTarihiOlay",
+                dataType: "json",
+                headers: headers,
+                data: {
+                    ID: currentID,
+                    Baslik: $("#txtBaslik").val(),
+                    Icerik: $("#txtIcerik").val()
+                    
+                },
+                success: function (result) {
+                    if (currentID == null) {
+                        currentID = result.ID;
+                        menuLinkEkle(currentID, $("#txtBaslik").val());
+                    }
+                    else {
+                        $(".menuLink[data-not-id='" + currentID + "']").text($("#txtBaslik").val());
+                    }
+
+                    setActiveLink();
+                    $("#statusMessage").text(result.Mesaj);
+                    $("#statusMessage").fadeIn();
+                }
+            });
+        }
+    });
+
+    function setActiveLink() {
+        $("#notlarMenu li").removeClass("active");
+
+        if (currentID) {
+            $(".menuLink[data-not-id='" + currentID + "']").parent("li").addClass("active");
+        }
+    }
+
+    $("#btnLogout").click(function () {
+        sessionStorage.removeItem("tokenKey");
+        window.location.href = "/Account/Login";
+    });
+
+    $("#btnYeni").click(function () {
+        currentID = null;
+        setActiveLink();
+        $("#txtBaslik").val("");
+        $("#txtIcerik").val("");
+    });
+
+    $("#notlarMenu").on("click", ".menuLink", menuLinkClick);
+
+    function menuLinkClick() {
+        currentID = $(this).attr("data-not-id");
+        setActiveLink();
+
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetNot/" + currentID,
+            headers: headers,
+            success: function (data) {
+                $("#statusMessage").hide();
+                $("#txtBaslik").val(data.Baslik);
+                $("#txtIcerik").val(data.Icerik);
+            }
+        });
+    }
+
+    $("#btnSil").click(function () {
+        if (!currentID) {
+            return;
+        }
+
+        var silinecekLi = $(".menuLink[data-not-id='" + currentID + "']").parent("li");
+
+        $.ajax({
+            method: "post",
+            url: "/api/Main/Delete/" + currentID,
+            headers: headers,
+            success: function (result) {
+                silinecekLi.remove();
+                $("#statusMessage").text(result.Mesaj);
+                $("#statusMessage").fadeIn();
+
+                if (result.ID == currentID) {
+                    currentID = null;
+                    setActiveLink();
+                    $("#txtBaslik").val("");
+                    $("#txtIcerik").val("");
+                }
+            }
+        });
+    });
+</script>
+
+    }

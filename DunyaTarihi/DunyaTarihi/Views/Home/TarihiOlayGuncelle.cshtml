@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "TarihiOlayGuncelle";
+}
+
+<h2>Tarihi Olay Güncelleme Sayfası</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <label for="txtBaslik">Başlık : </label>
+        <input type="text" id="txtBaslik" class="form-control" required />
+        <br />
+    </div>
+
+
+
+    <div class="col-md-7">
+        <label for="txtIcerik">İçerik : </label>
+        <textarea id="txtIcerik" class="form-control" rows="7" style="min-width: 100%" required></textarea>
+        <br />
+    </div>
+
+
+    <div class="col-md-12">
+        <label for="kategori">Kategori : </label>
+        <select id="kategori" class="form-control"></select>
+        <br />
+    </div>
+
+    <div class="col-md-12">
+        <label for="durum">Durum : </label>
+        <select id="durum" class="form-control"></select>
+    </div>
+    <br />
+
+    <div class="col-md-6 ">
+        <br />
+        <button class="btn btn-info" onclick="olayGuncelle()">Güncelle</button>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+
+                   $.ajax({
+                method: "get",
+                       url: "/api/Main/GetDurumlar",
+                       success: function (data) {
+                           $.each(data, function (key, value) {
+                               $('#durum').append($('<option>', {
+                                   value: value.DurumID,
+                                   text: value.Durumu
+                               }));
+                           })
+                       }
+            });
+
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetKategoriler",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $('#kategori').append($('<option>', {
+                            value: value.KategoriID,
+                            text: value.KategoriAd
+                        }));
+                    })
+                }
+            });
+
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetOlay/" + @TempData["OlayID"],
+                success: function (data) {
+                    $("#txtBaslik").val(data.Baslik);
+                    $("#txtIcerik").val(data.Icerik);
+                    $("#kategori").val(data.KategoriID);
+                    $("#durum").val(data.DurumID)
+                }
+            });
+
+
+
+        });
+
+        
+        function olayGuncelle() {
+
+
+            if ($('#txtBaslik').val() == '' || $('#txtIcerik').val() == '') {
+                alert('Lütfen tüm alanları doldurunuz.');
+            }
+            else {
+                $.ajax({
+                    method: "post",
+                    url: "/api/Main/UpdateOlay/",
+                    data: {
+                        ID: @TempData["OlayID"],
+                        Baslik: $("#txtBaslik").val(),
+                        Icerik: $("#txtIcerik").val(),
+                        KategoriID: $("#kategori").children("option:selected").val(),
+                        DurumID: $("#durum").children("option:selected").val()
+                    },
+                    success: function (data) {
+                        location.reload();
+                        alert(data);
+
+                    }
+                });
+            }
+
+            }
+
+    </script>
+
+}

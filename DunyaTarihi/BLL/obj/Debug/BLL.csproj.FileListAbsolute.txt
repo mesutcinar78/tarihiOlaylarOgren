@@ -1,0 +1,64 @@
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\BLL.dll.config
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\BLL.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\BLL.pdb
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DAL.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DATAA.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\EntityFramework.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DAL.pdb
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DAL.dll.config
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DATAA.pdb
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\DATAA.dll.config
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\EntityFramework.xml
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\obj\Debug\BLL.dll
+C:\Users\mkara\source\repos\DunyaTarihi\BLL\obj\Debug\BLL.pdb
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\BLL.dll.config
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\BLL.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\BLL.pdb
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DAL.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DATAA.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\EntityFramework.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DAL.pdb
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DAL.dll.config
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DATAA.pdb
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\DATAA.dll.config
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\EntityFramework.xml
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\obj\Debug\BLL.dll
+C:\Users\mkara\Documents\GitHub\tarihOgren\DunyaTarihi\BLL\obj\Debug\BLL.pdb
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\BLL.dll.config
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\BLL.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\BLL.pdb
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DAL.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DATAA.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\EntityFramework.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DAL.pdb
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DAL.dll.config
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DATAA.pdb
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\DATAA.dll.config
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\EntityFramework.xml
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\obj\Debug\BLL.dll
+C:\Users\mesut\Desktop\Dünya Tarihi\DunyaTarihi\BLL\obj\Debug\BLL.pdb

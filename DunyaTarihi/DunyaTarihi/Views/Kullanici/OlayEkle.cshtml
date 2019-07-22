@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "OlayEkle";
+}
+
+<h2>Tarihi Olay Ekle</h2>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <label for="txtBaslik">Başlık : </label>
+        <input type="text" id="txtBaslik" class="form-control" required maxlength="50" />
+        <br />
+    </div>
+
+
+
+    <div class="col-md-7">
+        <label for="txtIcerik">İçerik : </label>
+        <textarea id="txtIcerik" class="form-control" rows="7" style="min-width: 100%" required maxlength="2000"></textarea>
+        <br />
+    </div>
+
+    <div class="col-md-12">
+        <label for="ulke">Ülke : </label>
+        <select id="ulke" class="form-control"></select>
+        <br />
+    </div>
+
+    <div class="col-md-12">
+        <label for="dtBaslangic">Başlangıç Tarihi : </label>
+        <input type="date" id="dtBaslangic" class="form-control" required min="0001-01-01"/>
+        <br />
+    </div>
+
+
+    <div class="col-md-12">
+        <label for="dtBitis">Bitiş Tarihi : </label>
+        <input type="date"  id="dtBitis" class="form-control" required min="0001-01-01" />
+        <br />
+    </div>
+    <br />
+
+    <div class="col-md-12">
+        <label for="kategori">Kategori : </label>
+        <select id="kategori" class="form-control" required></select>
+        <br />
+    </div>
+
+
+
+    <div class="col-md-6 ">
+        <br />
+        <button class="btn btn-info" onclick="olayEkle()">Ekle</button>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script>
+
+        document.getElementById('dtBaslangic').valueAsDate = new Date();
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("dtBitis").setAttribute("max", today);
+        document.getElementById("dtBaslangic").setAttribute("max", today);
+        document.getElementById("dtBitis").setAttribute("val", today);
+
+        $(document).ready(function () {
+
+            $.ajax({
+                method: "get",
+                       url: "/api/Main/GetDurumlar",
+                       success: function (data) {
+                           $.each(data, function (key, value) {
+                               $('#durum').append($('<option>', {
+                                   value: value.DurumID,
+                                   text: value.Durumu
+                               }));
+                           })
+                       }
+            });
+
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetKategoriler",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $('#kategori').append($('<option>', {
+                            value: value.KategoriID,
+                            text: value.KategoriAd
+                        }));
+                    })
+                }
+            });
+
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetUlkeler",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $('#ulke').append($('<option>', {
+                            value: value.UlkeID,
+                            text: value.UlkeAd
+                        }));
+                    })
+                }
+            });
+
+        });
+
+
+        function olayEkle() {
+
+            if ($('#txtBaslik').val() == '' || $('#txtIcerik').val() == '') {
+                alert('Lütfen tüm alanları doldurunuz.');
+            }
+            else {
+
+                $.ajax({
+                    method: "post",
+                    url: "/api/Main/AddOlay/",
+                    data: {
+                        Baslik: $("#txtBaslik").val(),
+                        Icerik: $("#txtIcerik").val(),
+                        KategoriID: $("#kategori").children("option:selected").val(),
+                        UlkeID: $("#ulke").children("option:selected").val(),
+                        BaslangicTarihi: $('#dtBaslangic').val(),
+                        BitisTarihi: $('#dtBitis').val()
+
+                    },
+                    success: function (data) {
+                        
+                        alert(data);
+                        window.location.replace("http://localhost:49956/Kullanici/Eklediklerim");
+
+                        
+
+                    }
+                });
+
+            }
+
+            }
+
+    </script>
+
+}

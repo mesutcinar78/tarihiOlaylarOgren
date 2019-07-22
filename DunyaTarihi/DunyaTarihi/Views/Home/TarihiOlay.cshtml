@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "TarihiOlay";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<h2>Tarihi Olaylar</h2>
+
+<div class="row" style="margin-top:50px;">
+
+    @*<div class="col-md-2">
+        <label for="tarih">Tarih Seçiniz: </label> <input class="form-control" name="tarih" id="secilenTarih" min="0" max="2019" type="number" value="10">
+    </div>*@
+    <div class="col-md-2">
+        <label for="kategori">Kategori : </label>
+        <select id="kategori" class="form-control"></select>
+        <br />
+    </div>
+    <div class="col-md-6 ">
+        <br />
+        <button class="btn btn-info" onclick="olaylariFiltrele()">Filtrele</button>
+    </div>
+</div>
+
+<div id="olaylar"></div>
+
+
+
+
+
+@section Scripts
+{
+    <script>
+
+        var secilenKategoriID = $("#kategori").val();
+
+        $(document).ready(function () {
+
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetKategoriler",
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $('#kategori').append($('<option>', {
+                            value: value.KategoriID,
+                            text: value.KategoriAd
+                        }));
+                    })
+                }
+            });
+
+
+            var d = new Date();
+            $("#secilenTarih").val(d.getFullYear());
+
+            $(":input").bind('keyup mouseup', function () {
+                secilenKategoriID = $("#kategori").val();
+            });
+        });
+
+
+        var olayID;
+        var ulkeK = '@TempData["ulkeKodu"]';
+
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetByUlkeKod",
+                data: {
+                    ulkeKod: ulkeK
+            },
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    olayID = value.ID;
+                    if ("True" == "@Request.IsAuthenticated") {
+                        $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID + "'>" + value.Baslik + "</a><button id='" + value.ID + "' onclick='Ekle(this)' style='margin-left:50px;'>"
+                            + "Kitaplığıma Ekle" + "</button></p>")
+                    }
+                    else {
+                        $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID + "'>" + value.Baslik + "</a></p>");
+                    }
+                    })
+            }
+        });
+
+        function Ekle(e) {
+            $.ajax({
+                method: "post",
+                url: "/api/Main/AddToKitaplik/" + e.id,
+                success: function (mesaj) {
+                    $("#" + e.id + "").html('Kitaplığa eklendi');
+                    alert(mesaj);
+
+
+                }
+            });
+        }
+
+        function olaylariFiltrele() {
+            $("#olaylar").empty();
+
+            $.ajax({
+                method: "get",
+                url: "/api/Main/GetFiltreliOlay",
+                data: {
+                    ulkeKod: ulkeK,
+                    katID: secilenKategoriID
+                },
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        olayID = value.ID;
+                     if ("True" == "@Request.IsAuthenticated") {
+                        $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID + "'>" + value.Baslik + "</a><button id='" + value.ID + "' onclick='Ekle(this)' style='margin-left:50px;'>"
+                            + "Kitaplığıma Ekle" + "</button></p>")
+                    }
+                    else {
+                        $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID + "'>" + value.Baslik + "</a></p>");
+                    }
+                    })
+                }
+            });
+        }
+
+
+
+
+
+    </script>
+}

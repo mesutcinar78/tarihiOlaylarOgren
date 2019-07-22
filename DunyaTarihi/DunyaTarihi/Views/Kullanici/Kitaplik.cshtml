@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Kitaplik";
+}
+
+<h2>Kitaplığım</h2>
+
+<div id="olaylar"></div>
+
+
+
+
+@section Scripts
+{
+    <script>
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetFromKitaplik",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    $("#olaylar").append("<p><a href='/Home/TarihiOlayDetay/" + value.ID + "'>" + value.Baslik + "</a><button id='" + value.ID + "' onclick='Cikar(this)' style='margin-left:50px;'>"
+                        + "Kitaplığımdan Çıkar" + "</button>");
+                })
+            }
+        });
+
+        function Cikar(e) {
+            $.ajax({
+                method: "post",
+                url: "/api/Main/DeleteFromKitaplik/" + e.id,
+                success: function (mesaj) {
+                    alert(mesaj);
+                    location.reload();
+
+
+
+                }
+            });
+
+        }
+
+
+
+        
+    </script>
+}

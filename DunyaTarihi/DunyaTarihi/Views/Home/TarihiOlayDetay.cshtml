@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "TarihiOlayDetay";
+}
+
+<div id="olay"></div>
+
+
+
+@section Scripts
+{
+    <script>
+
+        $.ajax({
+            method: "get",
+            url: "/api/Main/GetByTarihiOlayID/" + @TempData["OlayID"],
+            success: function (data) {
+
+                var d = new Date(data.BaslangicTarihi);
+                var db = new Date(data.BitisTarihi);
+                $("#olay").append("<h2>" + data.Baslik + "</h2>");
+                if (+d === +db) { 
+                $("#olay").append("<h3>(" + d.getFullYear() + ")</h3>");
+            }
+                else { 
+                $("#olay").append("<h3>(" + d.getFullYear() + " - " + db.getFullYear() + ")</h3>");
+            }
+
+                $("#olay").append("<p>" + data.Icerik +"</p>");
+                $("#olay").append("<p>" + data.YazarAdı +"</p>");
+            }
+        });
+
+    </script>
+
+}
