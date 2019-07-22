@@ -1,0 +1,2 @@
+# tarihiOlaylarOgren
+ bilgeadam_proje
